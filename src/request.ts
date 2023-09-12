@@ -25,17 +25,18 @@ request.interceptors.response.use(
     let data: Record<string, any> = res.data;
     if (isObject(data)) {
       if (data?.code === 200) {
-        return Promise.resolve(data);
+        return Promise.resolve(res);
       } else {
         const msg = errorsCode?.[data.code];
         if (msg) {
           message.error(msg);
         }
-        return Promise.reject(data);
+        message.error(res.data.msg);
+        return Promise.reject(res);
       }
     }
     //比如响应一些报错信息
-    return Promise.resolve(data);
+    return Promise.resolve(res);
   },
   function (error) {
     return Promise.reject(error);

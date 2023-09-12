@@ -8,8 +8,8 @@
     "baseUrl": "./",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "waUtils": ["src"],
-      "waUtils/*": ["src/*", "*"]
+      "waRequest": ["src"],
+      "waRequest/*": ["src/*", "*"]
     }
   },
   "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "global.d.ts"]
