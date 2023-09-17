@@ -47,7 +47,8 @@
   "dependencies": {
     "axios": "^1.4.0",
     "copy-to-clipboard": "^3.3.3",
-    "dayjs": "^1.11.9"
+    "dayjs": "^1.11.9",
+    "wa-utils": "^0.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
