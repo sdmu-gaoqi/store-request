@@ -1,11 +1,8 @@
 import { isEqual } from 'lodash';
+import apis from 'waRequest/apis';
 import request from 'waRequest/request';
-import { CommonResponse, ListParams, ListResponse } from 'waRequest/type';
-import { RoleInfo, RoleParams } from 'waRequest/type/system';
-
-const apis = {
-  getList: '/system/role/list',
-};
+import { ListParams, ListResponse } from 'waRequest/type';
+import { ReturnRoleList, RoleInfo, RoleParams } from 'waRequest/type/system';
 
 class System {
   public roleList: {
@@ -30,16 +27,14 @@ class System {
       if (isEqual(searchPage, currentPage)) {
         return this.roleList;
       }
-      const data = await request.request<
-        CommonResponse<ListResponse & { rows: RoleInfo[] }>
-      >({
-        url: apis.getList,
+      const data = await request<ReturnRoleList>({
+        url: apis.getRoleList,
         params: params,
       });
-      this.roleList.data = data.data.rows;
+      this.roleList.data = data.rows;
       this.roleList.current = params.pageNum;
       this.roleList.pageSize = params.pageSize;
-      this.roleList.total = data.data.total;
+      this.roleList.total = data.total;
       return this.roleList;
     } catch (err) {
       console.log(err, '获取角色失败');

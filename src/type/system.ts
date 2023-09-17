@@ -1,3 +1,5 @@
+import { CommonResponse, ListResponse } from '.';
+
 // 角色
 export interface RoleInfo {
   admin: boolean;
@@ -20,5 +22,9 @@ export interface RoleInfo {
   updateBy: string;
   updateTime: string;
 }
+
+export type ReturnRoleList = CommonResponse<
+  ListResponse & { rows: RoleInfo[] }
+>;
 
 export type RoleParams = Record<string, any>;
