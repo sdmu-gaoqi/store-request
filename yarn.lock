@@ -1662,11 +1662,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@^4.14.191":
-  version "4.14.198"
-  resolved "https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.198.tgz#4d27465257011aedc741a809f1269941fa2c5d4c"
-  integrity sha512-trNJ/vtMZYMLhfN45uLq4ShQSw0/S7xCTLLVM+WM1rmFpba/VS42jVUgaO3w/NOLiWR/09lnYk0yMaA/atdIsg==
-
 "@types/mdast@^3.0.0", "@types/mdast@^3.0.12":
   version "3.0.12"
   resolved "https://registry.npmmirror.com/@types/mdast/-/mdast-3.0.12.tgz#beeb511b977c875a5b0cc92eab6fcac2f0895514"
@@ -11182,10 +11177,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npmmirror.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-wa-utils@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmmirror.com/wa-utils/-/wa-utils-0.2.0.tgz#3b46386a85c7f5280a45538746b8b58886f836dd"
-  integrity sha512-HGIOCKNM7pCO+OaSI0mWGJCz/OHQ60ImlAMUhIvYLatrb7CaKbUg++jV+j5Nyz2vjCZ9fB+Ft3omaEUSr82NRQ==
+wa-utils@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmmirror.com/wa-utils/-/wa-utils-0.2.1.tgz#9a9bc05d7ab5383b8a77a39ccdc84ebbe2563389"
+  integrity sha512-Cd747+oKDigT0R0Vcfg7yjDfvad5TM6YkaQCISrxfia6KSkxX2e17+opMvkdM/kuE5DvJ5cXVUQ05mqLyGDAuQ==
   dependencies:
     "@types/js-cookie" "^3.0.3"
     "@types/uuid" "^9.0.2"
