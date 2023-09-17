@@ -1,12 +1,7 @@
-import { message } from 'ant-design-vue';
 import axios, { AxiosRequestConfig } from 'axios';
 import { isObject } from 'lodash';
 import { cookie } from 'wa-utils';
 import errorsCode from './config/errors';
-
-message.config({
-  maxCount: 1,
-});
 
 const _request = axios.create({
   baseURL: 'http://vue.ruoyi.vip/prod-api/',
@@ -28,11 +23,10 @@ _request.interceptors.response.use(
         return Promise.resolve(data);
       } else {
         const msg = errorsCode?.[data.code];
-        if (msg) {
-          message.error(msg);
-        }
-        message.error(res.data.msg);
-        return Promise.reject(data);
+        return Promise.reject({
+          ...data,
+          msg: msg || data.msg,
+        });
       }
     }
     //比如响应一些报错信息
