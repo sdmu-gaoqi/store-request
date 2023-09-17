@@ -1,4 +1,3 @@
-import { reject } from 'lodash';
 import { cookie } from 'wa-utils';
 import apis from 'waRequest/apis';
 import request from 'waRequest/request';
@@ -32,7 +31,7 @@ class User {
         cookie.remove('Admin-Token');
         return res;
       })
-      .catch((err) => reject(err));
+      .catch((err) => Promise.reject(err));
   }
 
   public getUserInfo() {
