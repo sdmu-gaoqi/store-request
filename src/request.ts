@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { isObject } from 'lodash';
-import { cookie } from 'wa-utils';
+import { cookie, isObject } from 'wa-utils';
 import errorsCode from './config/errors';
 
 const _request = axios.create({

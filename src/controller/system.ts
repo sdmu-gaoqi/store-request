@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash';
+import { isEqual } from 'wa-utils';
 import apis from 'waRequest/apis';
 import request from 'waRequest/request';
 import { ListParams, ListResponse } from 'waRequest/type';
