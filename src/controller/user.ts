@@ -13,10 +13,14 @@ class User {
       data: params,
       method: 'POST',
     })
-      .then((res) => {
+      .then(async (res) => {
         this.token = res.token;
         cookie.set('Admin-Token', this.token);
-        return res;
+        const userInfo = await this.getUserInfo();
+        return {
+          ...res,
+          ...userInfo,
+        };
       })
       .catch((err) => Promise.reject(err));
   }

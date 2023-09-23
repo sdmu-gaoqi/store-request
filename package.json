@@ -45,9 +45,11 @@
     ]
   },
   "dependencies": {
+    "@types/lodash": "^4.14.198",
     "axios": "^1.4.0",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.9",
+    "lodash": "^4.17.21",
     "wa-utils": "^0.2.1"
   },
   "devDependencies": {

@@ -19,7 +19,13 @@ export type UserInfo = {
   roleIds: (string | number)[];
 };
 
-export type ReturnLogin = CommonResponse<{ token: string }>;
+export type ReturnLogin = CommonResponse<
+  { token: string } & {
+    permissions: string[];
+    roles: string[];
+    user: UserInfo;
+  }
+>;
 export type ReturnUserInfo = Partial<
   CommonResponse<{
     permissions: string[];
@@ -30,5 +36,7 @@ export type ReturnUserInfo = Partial<
 
 export type LoginParams = {
   username: string;
-  password: string;
+  password?: string;
+  code?: string;
+  uuid?: string;
 };
