@@ -4,6 +4,7 @@ export type ListResponse = {
   total: number;
   current: number;
   pageSize: number;
+  rows?: any[];
 };
 
 export type ListParams<T> = {

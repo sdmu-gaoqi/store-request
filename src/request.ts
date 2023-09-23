@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { cookie, isObject } from 'wa-utils';
+import { isObject } from 'lodash';
+import { cookie } from 'wa-utils';
 import errorsCode from './config/errors';
 
 const _request = axios.create({
@@ -17,11 +18,15 @@ _request.interceptors.response.use(
   // eslint-disable-next-line
   (res) => {
     let data: Record<string, any> = res.data;
+    const onError = (window as any).onError;
     if (isObject(data)) {
       if (data?.code === 200) {
         return Promise.resolve(data);
       } else {
         const msg = errorsCode?.[data.code];
+        if (onError) {
+          onError(msg || data.msg);
+        }
         return Promise.reject({
           ...data,
           msg: msg || data.msg,
@@ -32,6 +37,10 @@ _request.interceptors.response.use(
     return Promise.resolve(data);
   },
   function (error) {
+    const onError = (window as any).onError;
+    if (onError) {
+      onError(error?.message || '网络错误');
+    }
     return Promise.reject(error);
   },
 );
