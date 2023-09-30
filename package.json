@@ -1,6 +1,6 @@
 {
   "name": "store-request",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A react library developed with dumi",
   "license": "MIT",
   "module": "dist/index.js",
@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.198",
+    "ant-design-vue": "^4.0.0",
     "axios": "^1.4.0",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.9",
