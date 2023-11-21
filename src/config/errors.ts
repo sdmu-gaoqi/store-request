@@ -1,5 +1,9 @@
+export enum ErrorCode {
+  登录失效 = 401,
+}
+
 const errorsCode: Record<number, string> = {
-  401: '用户信息已过期,请重新登录',
+  [ErrorCode.登录失效]: '用户信息已过期,请重新登录',
 };
 
 export default errorsCode;

@@ -1,8 +1,10 @@
 import { isEqual } from 'wa-utils';
 import apis from 'waRequest/apis';
-import request from 'waRequest/request';
+import { default as _request } from 'waRequest/request';
 import { ListParams, ListResponse } from 'waRequest/type';
 import { ReturnRoleList, RoleInfo, RoleParams } from 'waRequest/type/system';
+
+const request = _request.request;
 
 class System {
   public roleList: {

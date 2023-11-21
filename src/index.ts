@@ -1,4 +1,10 @@
+export { default as CommonService } from './controller/common';
+export { default as Employee } from './controller/employee';
 export { default as Log } from './controller/log';
+export { default as Member } from './controller/member';
+export { default as Role } from './controller/role';
+export { default as Room } from './controller/room';
+export { default as Store } from './controller/store';
 export { default as System } from './controller/system';
 export { default as User } from './controller/user';
 export { default as request } from './request';
