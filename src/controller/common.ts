@@ -114,6 +114,20 @@ class CommonService {
       method: 'post',
     });
   }
+  orderDetail(data: { orderId: any; orderNo: any }) {
+    return request({
+      url: '/order/detail',
+      method: 'post',
+      data,
+    });
+  }
+  orderList(data: any) {
+    return request({
+      url: '/order/mangeList',
+      method: 'post',
+      data: formatRequest(data),
+    });
+  }
 }
 
 export default CommonService;
