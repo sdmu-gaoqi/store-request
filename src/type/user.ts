@@ -17,6 +17,7 @@ export type UserInfo = {
   remark: string;
   roleId: string | number;
   roleIds: (string | number)[];
+  storeCode: string;
 };
 
 export type ReturnLogin = CommonResponse<

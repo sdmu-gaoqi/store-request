@@ -1,16 +1,25 @@
 import { cookie } from 'wa-utils';
 import apis from 'waRequest/apis';
-import request from 'waRequest/request';
+import { default as _request } from 'waRequest/request';
 import { LoginParams, ReturnLogin, ReturnUserInfo } from 'waRequest/type/user';
+import { getParameterByName } from 'waRequest/utils';
+
+const request = _request.request;
 
 class User {
   public token: string = cookie.get('Admin-Token') as string;
+  public request = request;
   public userInfo: ReturnUserInfo = {};
 
   public login(params: LoginParams) {
     return request<ReturnLogin>({
       url: apis.login,
-      data: params,
+      data: {
+        ...params,
+        storeHeadquartersCode: getParameterByName('storeHeadquartersCode'),
+        storeCode:
+          getParameterByName('storeCode') || localStorage.getItem('storeCode'),
+      },
       method: 'POST',
     })
       .then(async (res) => {
@@ -30,6 +39,7 @@ class User {
       url: apis.logout,
     })
       .then((res) => {
+        delete _request.commonData.storeCode;
         this.token = '';
         this.userInfo = {};
         cookie.remove('Admin-Token');
@@ -44,6 +54,7 @@ class User {
     })
       .then((res) => {
         this.userInfo = res;
+        _request.upDateCommonData({ storeCode: res?.user?.storeCode });
         return res;
       })
       .catch((err) => Promise.reject(err));

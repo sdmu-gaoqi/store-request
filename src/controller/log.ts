@@ -1,8 +1,10 @@
 import apis from 'waRequest/apis';
-import request from 'waRequest/request';
+import { default as _request } from 'waRequest/request';
 import { ListParams } from 'waRequest/type';
 import { ReturnLoginlog } from 'waRequest/type/log';
 import { formatListResponse } from 'waRequest/utils';
+
+const request = _request.request;
 
 class Log {
   public loginLog: ReturnLoginlog = {};
