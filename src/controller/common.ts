@@ -123,7 +123,7 @@ class CommonService {
   }
   orderList(data: any) {
     return request({
-      url: '/order/mangeList',
+      url: '/order/manageList',
       method: 'post',
       data: formatRequest(data),
     });
