@@ -79,10 +79,17 @@ class CommonService {
       data: formatRequest(data),
     });
   }
-  createOrder(data: any) {
+  async createOrder(data: any) {
+    const res = (await request({
+      url: '/sequence/getOrderNo',
+      method: 'post',
+    })) as any;
     return request({
       url: '/order/create',
-      data,
+      data: {
+        ...data,
+        orderNo: res?.data,
+      },
       method: 'post',
     });
   }

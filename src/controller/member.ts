@@ -25,7 +25,7 @@ class Member {
     return request({ method: 'post', url: apis.member, data });
   }
   update(data) {
-    return request({ method: 'put', url: apis.member, data });
+    return request({ method: 'post', url: '/member/update', data });
   }
   delete(id) {
     return request({ method: 'delete', url: `${apis.member}/${id}` });
@@ -45,11 +45,18 @@ class Member {
       },
     });
   }
-  memberPay(data) {
+  async memberPay(data) {
+    const res = (await request({
+      url: '/sequence/getFlowNo',
+      method: 'post',
+    })) as any;
     return request({
       method: 'post',
       url: apis.memberPay,
-      data,
+      data: {
+        ...data,
+        requestNo: res?.data,
+      },
     });
   }
   payLogs(data) {
