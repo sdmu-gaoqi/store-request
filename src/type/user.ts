@@ -18,6 +18,7 @@ export type UserInfo = {
   roleId: string | number;
   roleIds: (string | number)[];
   storeCode: string;
+  currentStoreCode: string;
 };
 
 export type ReturnLogin = CommonResponse<

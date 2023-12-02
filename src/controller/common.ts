@@ -1,6 +1,7 @@
 import apis from 'waRequest/apis';
 import { default as _request } from 'waRequest/request';
 import { CommonResponse } from 'waRequest/type';
+import { MenuItem } from 'waRequest/type/system';
 import { formatRequest } from 'waRequest/utils';
 
 const request = _request.request;
@@ -107,6 +108,13 @@ class CommonService {
       method: 'post',
     });
   }
+  deleteOrder(data: { orderId: any; orderNo: any }) {
+    return request({
+      url: '/order/delete',
+      data,
+      method: 'post',
+    });
+  }
   preSettle(data: any) {
     return request({
       url: '/order/preSettle',
@@ -133,6 +141,45 @@ class CommonService {
       url: '/order/manageList',
       method: 'post',
       data: formatRequest(data),
+    });
+  }
+  permList(params: any) {
+    return request<CommonResponse<{ data: MenuItem[] }>>({
+      url: '/system/menu/list',
+      method: 'get',
+      params: params,
+    });
+  }
+  addPerm(data: any) {
+    return request({
+      url: '/system/menu',
+      method: 'post',
+      data,
+    });
+  }
+  updatePerm(data: any) {
+    return request({
+      url: '/system/menu',
+      method: 'put',
+      data,
+    });
+  }
+  deletePerm(id: any) {
+    return request({
+      url: `/system/menu/${id}`,
+      method: 'delete',
+    });
+  }
+  permTree() {
+    return request({
+      url: '/system/menu/treeselect',
+      method: 'get',
+    });
+  }
+  rolePermTree(roleId: any) {
+    return request({
+      url: `/system/menu/roleMenuTreeselect/${roleId}`,
+      method: 'get',
     });
   }
 }

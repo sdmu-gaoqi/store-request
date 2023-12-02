@@ -9,8 +9,13 @@ message.config({
   maxCount: 1,
 });
 
+const isProd =
+  location.host.includes('mengxiangjia') || location.search?.includes('isProd');
+
 const _request = axios.create({
-  baseURL: 'http://111.229.138.125:8080',
+  baseURL: isProd
+    ? 'http://mengxiangjia.rixinyy.com:8080'
+    : 'http://111.229.138.125:8080',
   timeout: 150000,
   withCredentials: true,
 });
@@ -48,7 +53,13 @@ class R {
           if (data?.code === 200) {
             return Promise.resolve(data);
           } else {
-            const msg = errorsCode?.[data.code];
+            let msg = errorsCode?.[data.code];
+            if (data?.code === 1028) {
+              const roomName = data?.msg
+                ?.replace('Exception, the roomNo:', '')
+                ?.replace(' has no enough amount', '');
+              msg = `${roomName}房间客数已满,暂不能创建订单`;
+            }
             message.error(msg || data.msg);
             if (data?.code === ErrorCode.登录失效) {
               cookie.remove('Admin-Token');

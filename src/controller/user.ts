@@ -54,10 +54,18 @@ class User {
     })
       .then((res) => {
         this.userInfo = res;
-        _request.upDateCommonData({ storeCode: res?.user?.storeCode });
+        _request.upDateCommonData({ storeCode: res?.user?.currentStoreCode });
         return res;
       })
       .catch((err) => Promise.reject(err));
+  }
+
+  changePassword(data: { oldPassword: string; newPassword: string }) {
+    return request({
+      url: '/system/user/profile/updatePwd',
+      method: 'put',
+      params: data,
+    });
   }
 }
 
