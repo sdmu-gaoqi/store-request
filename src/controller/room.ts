@@ -3,7 +3,7 @@ import { default as _request } from 'waRequest/request';
 const request = _request.request;
 
 class Room {
-  list(data: any) {
+  list(data: Record<string, any>) {
     const sendParams = {
       ...data,
       pageNum: data?.pageNum || 1,
@@ -16,7 +16,7 @@ class Room {
     });
   }
 
-  create(data: any) {
+  create(data: Record<string, any>) {
     return request({
       method: 'post',
       url: '/manage/guestRoom/create',
@@ -24,7 +24,7 @@ class Room {
     });
   }
 
-  update(data: any) {
+  update(data: Record<string, any>) {
     return request({
       method: 'post',
       url: '/manage/guestRoom/update',
@@ -32,7 +32,7 @@ class Room {
     });
   }
 
-  delete(data: any) {
+  delete(data: Record<string, any>) {
     return request({
       method: 'post',
       url: '/manage/guestRoom/remove',

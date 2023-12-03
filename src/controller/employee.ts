@@ -5,41 +5,41 @@ import { formatRequest } from 'waRequest/utils';
 const request = _request.request;
 
 class Employee {
-  list(params: any) {
+  list(params: Record<string, any>) {
     return request({
       url: apis.employeeList,
       method: 'get',
       params: formatRequest(params),
     });
   }
-  add(data: any) {
+  add(data: Record<string, any>) {
     return request({
       url: apis.employee,
       method: 'post',
       data,
     });
   }
-  update(data: any) {
+  update(data: Record<string, any>) {
     return request({
       url: apis.employee,
       method: 'put',
       data,
     });
   }
-  delete(id: any) {
+  delete(id: Record<string, any>) {
     return request({
       url: `${apis.employee}/${id}`,
       method: 'delete',
     });
   }
-  status(data: any) {
+  status(data: Record<string, any>) {
     return request({
       url: apis.employeeStatus,
       method: 'put',
       data,
     });
   }
-  info(id: any) {
+  info(id: Record<string, any>) {
     return request({
       url: `${apis.employee}/${id}`,
       method: 'get',

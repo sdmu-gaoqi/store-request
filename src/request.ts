@@ -5,6 +5,36 @@ import { cookie } from 'wa-utils';
 import errorsCode, { ErrorCode } from './config/errors';
 import { getParameterByName } from './utils';
 
+// @ts-nocheck
+function tansParams(params: any) {
+  if (!params || typeof params !== 'object') {
+    return params;
+  }
+  let result = '';
+  for (const propName of Object.keys(params)) {
+    const value = params[propName];
+    let part = encodeURIComponent(propName) + '=';
+    if (value !== null && value !== '' && typeof value !== 'undefined') {
+      if (typeof value === 'object') {
+        for (const key of Object.keys(value)) {
+          if (
+            value[key] !== null &&
+            value[key] !== '' &&
+            typeof value[key] !== 'undefined'
+          ) {
+            let params = propName + '[' + key + ']';
+            let subPart = encodeURIComponent(params) + '=';
+            result += subPart + encodeURIComponent(value[key]) + '&';
+          }
+        }
+      } else {
+        result += part + encodeURIComponent(value) + '&';
+      }
+    }
+  }
+  return result;
+}
+
 message.config({
   maxCount: 1,
 });
@@ -25,6 +55,7 @@ class R {
   constructor() {
     _request.interceptors.request.use((request) => {
       request.headers['Authorization'] = `Bearer ${cookie.get('Admin-Token')}`;
+      request.headers['Content-Type'] = `application/json`;
       request.params = {
         ...(this.commonData.storeCode && {
           storeCode: this.commonData.storeCode,
@@ -34,6 +65,13 @@ class R {
           request.params?.storeHeadquartersCode ||
           getParameterByName('storeHeadquartersCode'),
       };
+      // get请求映射params参数
+      if (request.method === 'get' && request.params) {
+        let url = request.url + '?' + tansParams(request.params);
+        url = url.slice(0, -1);
+        request.params = {};
+        request.url = url;
+      }
       request.data = {
         ...(this.commonData || {}),
         ...(request.data || {}),
