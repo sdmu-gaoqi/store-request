@@ -36,3 +36,10 @@ export type RoleInfo = {
   permissions: unknown[];
   admin: boolean;
 };
+
+export type ReturnCatdParams = {
+  memberId: number;
+  memberNo: string;
+  refundBalance: number;
+  remark: string;
+};
