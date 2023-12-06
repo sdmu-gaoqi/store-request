@@ -1,6 +1,8 @@
 import apis from 'waRequest/apis';
 import { default as _request } from 'waRequest/request';
 import { CommonResponse } from 'waRequest/type';
+import { ResponsePermTree } from 'waRequest/type/perm';
+import { MenuItem } from 'waRequest/type/system';
 import { formatRequest } from 'waRequest/utils';
 
 const request = _request.request;
@@ -26,7 +28,7 @@ class CommonService {
     });
   }
   // 价目表
-  projectList(data: any) {
+  projectList(data: Record<string, any>) {
     const sendData = {
       ...(data || {}),
       pageNum: data?.pageNum || 1,
@@ -38,28 +40,28 @@ class CommonService {
       data: sendData,
     });
   }
-  addProject(data: any) {
+  addProject(data: Record<string, any>) {
     return request({
       url: '/manage/serviceProject/create',
       method: 'post',
       data: data,
     });
   }
-  updateProject(data: any) {
+  updateProject(data: Record<string, any>) {
     return request({
       url: '/manage/serviceProject/update',
       method: 'post',
       data: data,
     });
   }
-  projectStatus(data: any) {
+  projectStatus(data: Record<string, any>) {
     return request({
       url: '/manage/serviceProject/changeStatus',
       data,
       method: 'post',
     });
   }
-  deleteProject(data: any) {
+  deleteProject(data: Record<string, any>) {
     return request({
       url: '/manage/serviceProject/remove',
       data,
@@ -72,14 +74,14 @@ class CommonService {
       method: 'get',
     });
   }
-  orderHome(data: any) {
+  orderHome(data: Record<string, any>) {
     return request({
       url: '/order/console',
       method: 'post',
       data: formatRequest(data),
     });
   }
-  async createOrder(data: any) {
+  async createOrder(data: Record<string, any>) {
     const res = (await request({
       url: '/sequence/getOrderNo',
       method: 'post',
@@ -93,21 +95,28 @@ class CommonService {
       method: 'post',
     });
   }
-  updateOrder(data: any) {
+  updateOrder(data: Record<string, any>) {
     return request({
       url: '/order/update',
       data,
       method: 'post',
     });
   }
-  submitOrder(data: any) {
+  submitOrder(data: Record<string, any>) {
     return request({
       url: '/order/submit',
       data,
       method: 'post',
     });
   }
-  preSettle(data: any) {
+  deleteOrder(data: { orderId: any; orderNo: any }) {
+    return request({
+      url: '/order/delete',
+      data,
+      method: 'post',
+    });
+  }
+  preSettle(data: Record<string, any>) {
     return request({
       url: '/order/preSettle',
       data,
@@ -128,11 +137,50 @@ class CommonService {
       data,
     });
   }
-  orderList(data: any) {
+  orderList(data: Record<string, any>) {
     return request({
       url: '/order/manageList',
       method: 'post',
       data: formatRequest(data),
+    });
+  }
+  permList(params: any) {
+    return request<CommonResponse<{ data: MenuItem[] }>>({
+      url: '/system/menu/list',
+      method: 'get',
+      params: params,
+    });
+  }
+  addPerm(data: Record<string, any>) {
+    return request({
+      url: '/system/menu',
+      method: 'post',
+      data,
+    });
+  }
+  updatePerm(data: any) {
+    return request({
+      url: '/system/menu',
+      method: 'put',
+      data,
+    });
+  }
+  deletePerm(id: any) {
+    return request({
+      url: `/system/menu/${id}`,
+      method: 'delete',
+    });
+  }
+  permTree() {
+    return request<ResponsePermTree>({
+      url: '/system/menu/treeselect',
+      method: 'get',
+    });
+  }
+  rolePermTree(roleId: any) {
+    return request<ResponsePermTree>({
+      url: `/system/menu/roleMenuTreeselect/${roleId}`,
+      method: 'get',
     });
   }
 }

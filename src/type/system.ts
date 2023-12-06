@@ -28,3 +28,23 @@ export type ReturnRoleList = CommonResponse<
 >;
 
 export type RoleParams = Record<string, any>;
+
+export enum MenuType {
+  目录 = 'M',
+  菜单 = 'C',
+  按钮 = 'F',
+}
+
+export type MenuItem = {
+  perms: string;
+  createTime: string;
+  menuId: number;
+  menuName: string;
+  menuType: 'M' | 'C' | 'F';
+  parentId: number;
+  parentName: string;
+  status: '0' | '1';
+  updateTime: string;
+  createBy: string;
+  updateBy: string;
+};

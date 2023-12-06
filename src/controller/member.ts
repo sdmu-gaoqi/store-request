@@ -2,6 +2,7 @@
 
 import apis from 'waRequest/apis';
 import { default as _request } from 'waRequest/request';
+import { ReturnCatdParams } from 'waRequest/type';
 
 const request = _request.request;
 
@@ -29,6 +30,13 @@ class Member {
   }
   delete(id) {
     return request({ method: 'delete', url: `${apis.member}/${id}` });
+  }
+  returnCatd(data: ReturnCatdParams) {
+    return request({
+      method: 'post',
+      url: '/member/deposit/memberExit',
+      params: data,
+    });
   }
   status(data) {
     return request({ method: 'put', url: apis.memberStatus, data });
